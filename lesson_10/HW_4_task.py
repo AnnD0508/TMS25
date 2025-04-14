@@ -2,9 +2,6 @@
 # Есть два файла: “students.txt” (ФИО, группа) и “grades.txt” (ФИО, оценки)
 # Задача: создать файл “report.txt” с информацией о студентах и их оценках, о среднем бале для каждого студента.
 # А так же в конце файла для каждой группы вывести средний бал по группе в порядке возрастания
-
-# import pandas as pd
-
 # Пример вывода:
 # Иванов Иван Иванович, Группа 101, 5 4 3 4 5, Средняя оценка: 4.20
 # Петров Петр Петрович, Группа 102, 4 4 5 3 4, Средняя оценка: 4.00
@@ -20,12 +17,12 @@ grades = {}
 
 with open('students.txt', 'r', encoding='utf-8') as file:
     for line in file:
-        fio, group = line.rsplit(', ', 1)
+        fio, group = line.removesuffix('\n').rsplit(', ', 1)
         students[fio] = group
 
 with open('grades.txt', 'r', encoding='utf-8') as file:
     for line in file:
-        fio, grades_str = line.rsplit(', ', 1)
+        fio, grades_str = line.removesuffix('\n').rsplit(', ', 1)
         grades_list = list(map(int, grades_str.split()))
         grades[fio] = grades_list
 
@@ -53,4 +50,4 @@ with open('report.txt', 'w', encoding='utf-8') as report:
 
     report.write("\nСредние оценки по группам (в порядке возрастания):\n")
     for group, avg in group_average_list:
-        report.write(f"{group}:{avg:}")
+        report.write(f"{group}: {avg:.2f}\n")
