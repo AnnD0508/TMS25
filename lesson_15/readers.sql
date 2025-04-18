@@ -21,4 +21,7 @@ VALUES
     ('Ольга Васильева', 'R008', '2023-08-22', '+79991234563', 'olga.vasileva@example.com'),  
     ('Дмитрий Морозов', 'R009', '2021-07-30', '+79101234564', 'dmitry.morozov@example.com'),  
     ('Елена Павлова', 'R010', '2020-02-14', '+79201234565', 'elena.pavlova@example.com');
-	
+
+SELECT * FROM readers
+
+SELECT *  FROM readers WHERE registration_date BETWEEN '2019-01-01' AND '2025-04-01';
